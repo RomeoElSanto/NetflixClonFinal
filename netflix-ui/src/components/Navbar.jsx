@@ -8,6 +8,7 @@ import { FaPowerOff, FaSearch } from "react-icons/fa";
 export default function Navbar({ isScrolled }) {
   const [mostrarBusqueda, setMostrarBusqueda] = useState(false);
   const [inputHover, setInputHover] = useState(false);
+  //Constantes de las paginas por las que se puede navegar dentro de la App
   const links = [
     { name: "Inicio", link: "/" },
     { name: "Series", link: "/series" },
@@ -16,6 +17,7 @@ export default function Navbar({ isScrolled }) {
   ];
 
   return (
+    //Container para que la barra de navegación no se pierda y se superponga cuando bajamos en la página
     <Container>
       <nav className={`${isScrolled ? "scrolled" : ""} flex`}>
         <div className="left flex a-center">
@@ -23,6 +25,7 @@ export default function Navbar({ isScrolled }) {
             <img src={logo} alt="Logo" />
           </div>
           <ul className="links flex">
+            {/*Map para que aparezcan arriba todas las opciones que metimos antes en constantes para navegar por la web */}
             {links.map(({ name, link }) => {
               return (
                 <li key={name}>
@@ -55,6 +58,7 @@ export default function Navbar({ isScrolled }) {
               }}
             />
           </div>
+          {/**Botón de desconectar */}
           <button onClick={() => signOut(firebaseAuth)}>
             <FaPowerOff />
           </button>
@@ -63,7 +67,7 @@ export default function Navbar({ isScrolled }) {
     </Container>
   );
 }
-
+//Css básico para darle la apariencia de la página original
 const Container = styled.div`
   .scrolled {
     background-color: black;

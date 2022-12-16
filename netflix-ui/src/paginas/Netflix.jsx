@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import backgroundImage from "../assets/home.jpg";
 import MovieLogo from "../assets/homeTitle.webp";
-
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 import { useNavigate } from "react-router-dom";
@@ -25,6 +24,7 @@ function Netflix() {
     dispatch(getGeneros());
   }, []);
 
+  //Llamamos a los géneros que pasamos desde el index.js donde cargamos la bbdd de películas
   useEffect(() => {
     if (generosCargados) {
       dispatch(buscarPeliculas({ genres: generos, type: "all" }));
@@ -34,13 +34,14 @@ function Netflix() {
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (!currentUser) navigate("/login");
   });
-
+  //Función en scroll para que al bajar en la pantalla principal tengamos siempre a la vista todo el menú de navegación, como pasa con Netflix
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
 
   return (
+    //Cuando el valor de Scroll sea diferente al de cero la barra de navegación tambien cambiara de color con ayuda del css.
     <Container>
       <Navbar isScrolled={isScrolled} />
       <div className="hero">

@@ -10,6 +10,7 @@ export default function Player() {
     <Container>
       <div className="player">
         <div className="back">
+          {/**Al hacer click en el video nos llevaria a la ruta por debajo de la que nos encontramos, por eso usamos el -1. */}
           <BsArrowLeft onClick={() => navigate(-1)} />
         </div>
         <video src={video} autoPlay loop controls muted />

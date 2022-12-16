@@ -8,11 +8,13 @@ import Header from "../components/Header";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../utils/firebase-config";
 
+//Función Login con las variables de email y contraseña y el navegador para movernos a las páginas
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  //Constante para implementar login con Firebase 
   const manejarLogin = async () => {
     try {
       await signInWithEmailAndPassword(firebaseAuth, email, password);
@@ -21,11 +23,13 @@ function Login() {
     }
   };
 
+  //Si nuestro usuario ya esta registrado y no cerramos sesión lleva a página Home
   onAuthStateChanged(firebaseAuth, (currentUser) => {
     if (currentUser) navigate("/");
   });
 
   return (
+    //Container para el menú de Login
     <Container>
       <BackgroundImage />
       <div className="content">
@@ -48,6 +52,7 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
               />
+                {/*Al hacer click llama al inicio de sesión con Firebase */}
               <button onClick={manejarLogin}>Iniciar sesión en tu cuenta</button>
             </div>
           </div>

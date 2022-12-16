@@ -25,7 +25,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
     } else navigate("/login");
   });
 
-  const addToList = async () => {
+  const addLista = async () => {
     try {
       await axios.post("http://localhost:5000/api/user/add", {
         email,
@@ -85,7 +85,7 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
                     }
                   />
                 ) : (
-                  <AiOutlinePlus title="Añadir a la lista" onClick={addToList} />
+                  <AiOutlinePlus title="Añadir a la lista" onClick={addLista} />
                 )}
               </div>
               <div className="info">

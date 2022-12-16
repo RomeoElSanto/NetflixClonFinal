@@ -12,6 +12,7 @@ const estadoInicial = {
   genres: [],
 };
 
+//Introducimos dentro de la constante getGeneros los generos proporcionados por el proveedor de la BBDD
 export const getGeneros = createAsyncThunk("netflix/genres", async () => {
   const {
     data: { genres },
@@ -21,6 +22,7 @@ export const getGeneros = createAsyncThunk("netflix/genres", async () => {
   return genres;
 });
 
+//Función donde introducimos los datos recogidos de la función anterior y le introducimos los datos a cada película
 const createArrayFromRawData = (array, moviesArray, genres) => {
   array.forEach((movie) => {
     const generosPeliculas = [];
@@ -38,6 +40,7 @@ const createArrayFromRawData = (array, moviesArray, genres) => {
   });
 };
 
+//Funcion importante para recorrer los datos que nos devuelve la bbdd de películas
 const getRawData = async (api, genres, paging = false) => {
   const arrayPeliculas = [];
   for (let i = 1; arrayPeliculas.length < 60 && i < 10; i++) {
@@ -62,6 +65,7 @@ export const buscarDatosPorGenero = createAsyncThunk(
   }
 );
 
+//Función para añadir las peliculas más vistas de la bbdd, en este caso limitado a semanal
 export const buscarPeliculas = createAsyncThunk(
   "netflix/trending",
   async ({ type }, thunkAPI) => {

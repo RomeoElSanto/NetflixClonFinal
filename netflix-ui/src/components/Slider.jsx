@@ -6,6 +6,7 @@ export default function Slider({ movies: peliculas }) {
     return peliculas.slice(from, to);
   };
   return (
+    //Container donde introducimos en los slider de nuestra web las peliculas correspondientes
     <Container>
       <CardSlider data={getPeliculasPorRango(0, 10)} title="En tendencia" />
       <CardSlider data={getPeliculasPorRango(10, 20)} title="Nuevo en Netflix" />
